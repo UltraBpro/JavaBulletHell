@@ -4,7 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
-	boolean Len=false,Xuong=false,Trai=false,Phai=false;
+	public boolean Len=false;
+	public boolean Xuong=false;
+	public boolean Trai=false;
+	public boolean Phai=false;
 
 	public void keyPressed(KeyEvent e) {
 		char PhimNao=e.getKeyChar();

@@ -9,21 +9,24 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class PanelGame extends JPanel implements Runnable{
 	final int SizeOGoc=16;
 	final int PhongTo=2;
 	final int SizeO=SizeOGoc*PhongTo;
 	final int SLCot=40;
 	final int SLHang=20;
-	final int Rong=SLCot*SizeO;
-	final int Dai=SLHang*SizeO;
+	final int Rong=SLHang*SizeO;
+	final int Dai=SLCot*SizeO;
 	int FPS=60;
 	Thread ThreadChayGame;
 	KeyHandler PhimNhan=new KeyHandler();
+	Player P1=new Player(this,PhimNhan);
 //	Vi tri nguoi choi 1
 	int P1X=100,P1Y=100,P1Speed=5;
 	public PanelGame() {
-		this.setPreferredSize(new Dimension(Rong,Dai));
+		this.setPreferredSize(new Dimension(Dai,Rong));
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(PhimNhan);
@@ -47,7 +50,7 @@ public class PanelGame extends JPanel implements Runnable{
 		while(ThreadChayGame!=null) {
 //			System.out.println("Dang chay.");
 //		1. Vi tri
-		Update();
+		P1.Update();
 //		2.Ve
 		repaint();
 		solanve++;
@@ -65,18 +68,21 @@ public class PanelGame extends JPanel implements Runnable{
 	};
 }
 	public void Update() {
-		if(PhimNhan.Len) P1Y-=P1Speed;
-		if(PhimNhan.Xuong)P1Y+=P1Speed;
-		if(PhimNhan.Trai)P1X-=P1Speed;
-		if(PhimNhan.Phai)P1X+=P1Speed;
-		if(P1Y>=Dai)P1Y=Dai;
-		if(P1X>=Rong)P1X=Rong;
+		
 	};
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
-		g2.setColor(Color.WHITE);
-		g2.fillRect(P1X, P1Y, SizeO, SizeO);
+		P1.Draw(g2);
 		g2.dispose();
 	};
+	public int getRong() {
+		return Rong;
+	}
+	public int getDai() {
+		return Dai;
+	}
+	public int getSizeO() {
+		return SizeO;
+	}
 }
