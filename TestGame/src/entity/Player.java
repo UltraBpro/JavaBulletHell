@@ -19,8 +19,8 @@ public class Player extends Entity{
 		getImg();
 	}
 	public void setDefault() {
-		x=100;
-		y=100;
+		x=PG.getSizeO();
+		y=PG.getSizeO();
 		setspeed(10);
 		Direction="Xuong";
 	}
@@ -55,36 +55,24 @@ public class Player extends Entity{
 		}
 	};
 	public void Update() {
-		if(PhimNhan.Len) {y-=getspeed();if(Direction=="Len2")Direction="Len1";
-		else
-		if(Direction=="Len1")Direction="Len2";
-		else
-		if(Direction=="Len")Direction="Len1";
-		else Direction="Len";
-		}
-		if(PhimNhan.Xuong) {y+=getspeed();if(Direction=="Xuong2")Direction="Xuong1";
-		else
-		if(Direction=="Xuong1")Direction="Xuong2";
-		else
-		if(Direction=="Xuong")Direction="Xuong1";
-		else Direction="Xuong";}
-		if(PhimNhan.Trai) {x-=getspeed();if(Direction=="Trai2")Direction="Phai1";
-		else
-		if(Direction=="Trai1")Direction="Trai2";
-		else
-		if(Direction=="Trai")Direction="Trai1";
-		else Direction="Trai";}
+		if(PhimNhan.Len) {y-=getspeed();Direction="Len";}
+		if(PhimNhan.Xuong) {y+=getspeed();Direction="Xuong";}
+		if(PhimNhan.Trai) {x-=getspeed();Direction="Trai";}
 		if(PhimNhan.Phai) {x+=getspeed();Direction="Phai";}
-		if(x>PG.getDai()-PG.getSizeO())x=PG.getDai()-PG.getSizeO();if(x<0)x=0;
-		if(y>PG.getRong()-PG.getSizeO())y=PG.getRong()-PG.getSizeO();if(y<0)y=0;
+		if(x>PG.getDai()-PG.getSizeO())x=PG.getDai()-PG.getSizeO();if(x<PG.getSizeO())x=PG.getSizeO();
+		if(y>PG.getRong()-PG.getSizeO())y=PG.getRong()-PG.getSizeO();if(y<PG.getSizeO())y=PG.getSizeO();
+		drawcount++;
+		if(TraiPhai==0)if(drawcount>20) {TraiPhai=1;drawcount=0;}
+		if(TraiPhai==2)if(drawcount>20) {TraiPhai=1;drawcount=0;}
+		if(TraiPhai==1)if(drawcount>20) {TraiPhai=2;drawcount=0;}
 	}
 	public void Draw(Graphics2D g2) {
 		BufferedImage img=null;
 		switch(Direction) {
-		case "Len":img=Len0;break;case "Len1":img=Len1;break;case "Len2":img=Len2;break;
-		case "Xuong":img=Xuong0;break;case "Xuong1":img=Xuong1;break;case "Xuong2":img=Xuong2;break;
-		case "Trai":img=Trai0;break;case "Trai1":img=Trai1;break;case "Trai2":img=Trai2;break;
-		case "Phai":img=Phai0;break;case "Phai1":img=Phai1;break;case "Phai2":img=Phai2;break;
+		case "Len":if(PhimNhan.Stop)img=Len0;else {if(TraiPhai==1)img=Len1;if(TraiPhai==2)img=Len2;}break;
+		case "Xuong":if(PhimNhan.Stop)img=Xuong0;else {if(TraiPhai==1)img=Xuong1;if(TraiPhai==2)img=Xuong2;}break;
+		case "Trai":if(PhimNhan.Stop)img=Trai0;else {if(TraiPhai==1)img=Trai1;if(TraiPhai==2)img=Trai2;}break;
+		case "Phai":if(PhimNhan.Stop)img=Phai0;else {if(TraiPhai==1)img=Phai1;if(TraiPhai==2)img=Phai2;}break;
 		}
 		g2.drawImage(img, x, y, PG.getSizeO(), PG.getSizeO(),null);
 	}

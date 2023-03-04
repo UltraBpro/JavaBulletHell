@@ -10,15 +10,17 @@ import java.util.TimerTask;
 import javax.swing.JPanel;
 
 import entity.Player;
+import entity.Wall;
 
 public class PanelGame extends JPanel implements Runnable{
 	final int SizeOGoc=16;
 	final int PhongTo=2;
 	final int SizeO=SizeOGoc*PhongTo;
-	final int SLCot=40;
-	final int SLHang=20;
+	final int SLCot=20;
+	final int SLHang=10;
 	final int Rong=SLHang*SizeO;
 	final int Dai=SLCot*SizeO;
+	boolean Init=false;
 	int FPS=60;
 	Thread ThreadChayGame;
 	KeyHandler PhimNhan=new KeyHandler();
@@ -26,7 +28,7 @@ public class PanelGame extends JPanel implements Runnable{
 //	Vi tri nguoi choi 1
 	int P1X=100,P1Y=100,P1Speed=5;
 	public PanelGame() {
-		this.setPreferredSize(new Dimension(Dai,Rong));
+		this.setPreferredSize(new Dimension(Dai+SizeO,Rong+SizeO));
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(PhimNhan);
@@ -70,7 +72,15 @@ public class PanelGame extends JPanel implements Runnable{
 	public void Update() {
 		
 	};
+	public void VeInit(Graphics g) {
+		super.paintComponent(g);
+			Graphics2D g1=(Graphics2D)g;
+			Wall tuong=new Wall(this);
+			tuong.Draw(g1);
+			Init=true;
+	}
 	public void paintComponent(Graphics g) {
+		if(Init==false)VeInit(g);
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
 		P1.Draw(g2);
