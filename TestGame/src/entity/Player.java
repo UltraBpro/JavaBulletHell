@@ -1,7 +1,6 @@
 package entity;
 import test1.PanelGame;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class Player extends Entity{
 	public void setDefault() {
 		x=PG.getSizeO();
 		y=PG.getSizeO();
-		setspeed(10);
+		setspeed(PG.getDai()/200);
 		Direction="Xuong";
 	}
 	public void setX(int x) {
@@ -68,7 +67,7 @@ public class Player extends Entity{
 	}
 	public void Draw(Graphics2D g2) {
 		BufferedImage img=null;
-		switch(Direction) {
+		switch(Direction){
 		case "Len":if(PhimNhan.Stop)img=Len0;else {if(TraiPhai==1)img=Len1;if(TraiPhai==2)img=Len2;}break;
 		case "Xuong":if(PhimNhan.Stop)img=Xuong0;else {if(TraiPhai==1)img=Xuong1;if(TraiPhai==2)img=Xuong2;}break;
 		case "Trai":if(PhimNhan.Stop)img=Trai0;else {if(TraiPhai==1)img=Trai1;if(TraiPhai==2)img=Trai2;}break;

@@ -9,8 +9,8 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import Nen.WallManager;
 import entity.Player;
-import entity.Wall;
 
 public class PanelGame extends JPanel implements Runnable{
 	final int SizeOGoc=16;
@@ -25,6 +25,7 @@ public class PanelGame extends JPanel implements Runnable{
 	Thread ThreadChayGame;
 	KeyHandler PhimNhan=new KeyHandler();
 	Player P1=new Player(this,PhimNhan);
+	WallManager tuong=new WallManager(this);
 //	Vi tri nguoi choi 1
 	int P1X=100,P1Y=100,P1Speed=5;
 	public PanelGame() {
@@ -72,18 +73,11 @@ public class PanelGame extends JPanel implements Runnable{
 	public void Update() {
 		
 	};
-	public void VeInit(Graphics g) {
-		super.paintComponent(g);
-			Graphics2D g1=(Graphics2D)g;
-			Wall tuong=new Wall(this);
-			tuong.Draw(g1);
-			Init=true;
-	}
 	public void paintComponent(Graphics g) {
-		if(Init==false)VeInit(g);
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
 		P1.Draw(g2);
+		tuong.Draw(g2);
 		g2.dispose();
 	};
 	public int getRong() {

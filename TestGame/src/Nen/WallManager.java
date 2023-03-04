@@ -1,4 +1,4 @@
-package entity;
+package Nen;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -9,11 +9,12 @@ import javax.imageio.ImageIO;
 
 import test1.PanelGame;
 
-public class Wall{
+public class WallManager{
 	PanelGame PG;
 	int xPos=0,yPos=0;
 	BufferedImage Wall0,Wall1,Wall2,Wall3,Wall4;
-	public Wall(PanelGame Panel) {
+	int[] WallNum;
+	public WallManager(PanelGame Panel) {
 		PG=Panel;
 		getImg();
 	}
@@ -24,28 +25,31 @@ public class Wall{
 			Wall2=ImageIO.read(getClass().getResourceAsStream("/Environment/Wall/Wall2.png"));
 			Wall3=ImageIO.read(getClass().getResourceAsStream("/Environment/Wall/Wall3.png"));
 			Wall4=ImageIO.read(getClass().getResourceAsStream("/Environment/Wall/Wall4.png"));
+			WallNum=new int[PG.getDai()/PG.getSizeO()*2+PG.getRong()/PG.getSizeO()*2];
+			Random rand=new Random();
+			for(int i=0;i<WallNum.length;i++) {
+				WallNum[i]=rand.nextInt(4);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	};
 	public void Draw(Graphics2D g2) {
-		BufferedImage img = null;
-		for(int j=0;j<PG.getRong()/PG.getSizeO();j++) {
-			if(j==0||j==PG.getRong()/PG.getSizeO()-1)
-			for(int i=0;i<PG.getDai()/PG.getSizeO();i++) {
-				Random rand=new Random();
-				switch (rand.nextInt(4)){
+		BufferedImage img = null;int num=0;
+		for(int j=0;j<=PG.getRong()/PG.getSizeO();j++) {
+			for(int i=0;i<=PG.getDai()/PG.getSizeO();i++) {
+				if(!(j>0&&j<PG.getRong()/PG.getSizeO()&&i>0&&i<PG.getDai()/PG.getSizeO())) {
+				switch (WallNum[num++]){
 				case 0:img=Wall0;break;
 				case 1:img=Wall1;break;
 				case 2:img=Wall2;break;
 				case 3:img=Wall3;break;
 				case 4:img=Wall4;break;
+					}
+				g2.drawImage(img,i*PG.getSizeO(),j*PG.getSizeO(),PG.getSizeO(),PG.getSizeO(),null);
 				}
-				g2.drawImage(img, xPos, yPos, PG.getSizeO(), PG.getSizeO(),null);
-				xPos+=PG.getSizeO();
-			}
-			yPos+=PG.getSizeO();
 		}
 	}
+}
 }
 	
