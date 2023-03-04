@@ -11,7 +11,6 @@ import test1.PanelGame;
 
 public class WallManager{
 	PanelGame PG;
-	int xPos=0,yPos=0;
 	BufferedImage Wall0,Wall1,Wall2,Wall3,Wall4;
 	int[] WallNum;
 	public WallManager(PanelGame Panel) {

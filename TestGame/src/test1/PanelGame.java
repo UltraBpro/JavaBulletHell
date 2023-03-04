@@ -9,6 +9,7 @@ import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
+import Nen.GroundManager;
 import Nen.WallManager;
 import entity.Player;
 
@@ -26,6 +27,7 @@ public class PanelGame extends JPanel implements Runnable{
 	KeyHandler PhimNhan=new KeyHandler();
 	Player P1=new Player(this,PhimNhan);
 	WallManager tuong=new WallManager(this);
+	GroundManager dat=new GroundManager(this);
 //	Vi tri nguoi choi 1
 	int P1X=100,P1Y=100,P1Speed=5;
 	public PanelGame() {
@@ -76,6 +78,7 @@ public class PanelGame extends JPanel implements Runnable{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
+		dat.Draw(g2);
 		P1.Draw(g2);
 		tuong.Draw(g2);
 		g2.dispose();
