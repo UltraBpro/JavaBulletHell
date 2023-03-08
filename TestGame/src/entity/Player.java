@@ -24,7 +24,7 @@ public class Player extends Entity{
 	public void setDefault() {
 		x=PG.getSizeO();
 		y=PG.getSizeO();
-		setspeed(PG.getDai()/200);
+		setspeed((int)(PG.getDai()/100*(PG.DoKho/2)));
 		Direction="Xuong";
 		HitBox=new Rectangle();
 		HitBox.height=8*PG.PhongTo;
@@ -51,8 +51,8 @@ public class Player extends Entity{
 		}
 	};
 	public void Update() {
-		if(PhimNhan.Shift)setspeed(PG.getDai()/400);
-		else setspeed(PG.getDai()/200);
+		if(PhimNhan.Shift)setspeed((int)(PG.getDai()/200*(PG.DoKho/2)));
+		else setspeed((int)(PG.getDai()/100*(PG.DoKho/2)));
 		if(PhimNhan.Len) {y-=getspeed();Direction="Len";}
 		if(PhimNhan.Xuong) {y+=getspeed();Direction="Xuong";}
 		if(PhimNhan.Trai) {x-=getspeed();Direction="Trai";}

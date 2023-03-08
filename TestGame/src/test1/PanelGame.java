@@ -28,7 +28,7 @@ public class PanelGame extends JPanel implements Runnable{
 	final int Dai=SLCot*SizeO;
 	boolean Init=false;
 	int FPS=60;
-	double DoKho;String NhanVat;
+	public double DoKho;String NhanVat;
 	public Thread ThreadChayGame;
 	KeyHandler PhimNhan=new KeyHandler();
 	public Player P1=new Player(this,PhimNhan);
@@ -52,7 +52,7 @@ public class PanelGame extends JPanel implements Runnable{
 	}
 	int solanve=0;
 	public void run() {
-		BulletHell.add(new LevelManager(this,"Free",DoKho,P1));
+		BulletHell.add(new LevelManager(this,"Free",P1));
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			  public void run() {

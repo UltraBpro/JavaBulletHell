@@ -11,14 +11,12 @@ import test1.PanelGame;
 public class LevelManager {
 	String level;
 	PanelGame PG;
-	double DoKho;
 	Player P1;
 	public List<Bullet> Dan=new ArrayList<Bullet>();
 	String[] PotentialDirect=new String[]{"PhaiXuong","Phai","PhaiLen","Len","TraiLen","Trai","TraiXuong","Xuong"};
-	public LevelManager(PanelGame Panel,String lvl,double DoKho,Player P) {
+	public LevelManager(PanelGame Panel,String lvl,Player P) {
 		PG=Panel;
 		level=lvl;
-		this.DoKho=DoKho;
 		P1=P;
 		setLevel();
 	}
@@ -26,31 +24,31 @@ public class LevelManager {
 		switch(level) {
 		case "1":
 			for(int j=PG.getSizeO();j<PG.getRong();j+=PG.getSizeO()) {
-			if(j!=PG.getSizeO()*4)Dan.add(new Bullet(PG,PG.P1,DoKho,PG.getDai()-100,j,"Trai"));
+			if(j!=PG.getSizeO()*4)Dan.add(new Bullet(PG,PG.P1,PG.DoKho,PG.getDai()-100,j,"Trai"));
 		}
 		break;
 		case "Free":{
 			Random rand=new Random();
 			Timer timer = new Timer();
-			int QuangNghi=(int) (1000/DoKho);
+			int QuangNghi=(int) (1000/PG.DoKho);
 			timer.scheduleAtFixedRate(new TimerTask() {
 				  public void run() {
 						int index=rand.nextInt(PotentialDirect.length);
 						String Direct=PotentialDirect[index];
 						index=rand.nextInt(FindDirect(Direct).length);
 						String BulletDir=FindDirect(Direct)[index];
-						Dan.add(new Bullet(PG,PG.P1,DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+						Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
 				  }
-				 }, 1000, QuangNghi);
+				 }, 5000, QuangNghi);
 			timer.scheduleAtFixedRate(new TimerTask() {
 				  public void run() {
 						int index=rand.nextInt(PotentialDirect.length);
 						String Direct=PotentialDirect[index];
 						index=rand.nextInt(FindDirect(Direct).length);
 						String BulletDir=FindDirect(Direct)[index];
-						Dan.add(new Bullet(PG,PG.P1,DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+						Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
 				  }
-				 }, 1000, QuangNghi);
+				 }, 7000, QuangNghi);
 			break;}
 		}
 	}
