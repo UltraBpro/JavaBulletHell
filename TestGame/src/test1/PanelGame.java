@@ -16,6 +16,7 @@ import Nen.WallManager;
 import entity.Bullet;
 import entity.Player;
 import entity.FPS;
+import entity.LevelManager;
 
 public class PanelGame extends JPanel implements Runnable{
 	final int SizeOGoc=16;
@@ -27,21 +28,23 @@ public class PanelGame extends JPanel implements Runnable{
 	final int Dai=SLCot*SizeO;
 	boolean Init=false;
 	int FPS=60;
+	double DoKho;String NhanVat;
 	public Thread ThreadChayGame;
 	KeyHandler PhimNhan=new KeyHandler();
-	Player P1=new Player(this,PhimNhan);
+	public Player P1=new Player(this,PhimNhan);
 	WallManager tuong=new WallManager(this);
 	GroundManager dat=new GroundManager(this);
-	List<Bullet> BulletHell=new ArrayList<Bullet>();
+	List<LevelManager> BulletHell=new ArrayList<LevelManager>();
 	FPS FPSdraw=new FPS(this);
 //	Vi tri nguoi choi 1
 	int P1X=100,P1Y=100,P1Speed=5;
-	public PanelGame() {
+	public PanelGame(Double DoKho,String NhanVat) {
 		this.setPreferredSize(new Dimension(Dai+SizeO,Rong+SizeO));
 		this.setBackground(Color.BLACK);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(PhimNhan);
 		this.setFocusable(true);
+		this.DoKho=DoKho;this.NhanVat=NhanVat;
 	}
 	public void ChayThread() {
 		ThreadChayGame=new Thread(this);
@@ -49,9 +52,7 @@ public class PanelGame extends JPanel implements Runnable{
 	}
 	int solanve=0;
 	public void run() {
-			for(int j=SizeO;j<Rong;j+=SizeO) {
-				if(j!=SizeO*4)BulletHell.add(new Bullet(this,P1,1,Dai-100,j,"Trai"));
-			}
+		BulletHell.add(new LevelManager(this,"Free",DoKho,P1));
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			  public void run() {
@@ -83,19 +84,20 @@ public class PanelGame extends JPanel implements Runnable{
 }
 	public void Update() {
 		P1.Update();
-		for(int i=0;i< BulletHell.size();i++) {BulletHell.get(i).Update();if(BulletHell.get(i).TuHuy){
-			System.out.println("Het game roi do thang loz, demo nen ai cung qua duoc thoi cu");ThreadChayGame.stop();
-			BulletHell.remove(i);
+		for(LevelManager j : BulletHell)for(int i=0;i< j.Dan.size();i++) {
+			(j.Dan.get(i)).Update();
+			if(j.Dan.get(i).TuHuy){
+			j.Dan.remove(i);
 			}
 		}
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2= (Graphics2D)g;
-		dat.Draw(g2);
-		P1.Draw(g2);
-		for(Bullet i : BulletHell)i.Draw(g2);
+				dat.Draw(g2);
 		tuong.Draw(g2);
+		P1.Draw(g2);
+		for(LevelManager j : BulletHell)for(Bullet i : j.Dan)i.Draw(g2);
 		FPSdraw.Draw(g2);
 		g2.dispose();
 	}

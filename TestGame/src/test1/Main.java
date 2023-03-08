@@ -8,7 +8,8 @@ public class Main {
 		JFrame ManHinh=new JFrame();
 		ManHinh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ManHinh.setTitle("May dang lam con cac gi voi cuoc doi nay");
-		PanelGame Game=new PanelGame();
+		Double DoKho=(double)2;String NhanVat=null;
+		PanelGame Game=new PanelGame(DoKho,NhanVat);
 		ManHinh.add(Game);
 		ManHinh.pack();
 		ManHinh.setResizable(false);

@@ -2,6 +2,7 @@ package entity;
 import test1.PanelGame;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -13,6 +14,7 @@ import test1.KeyHandler;
 public class Player extends Entity{
 	PanelGame PG;
 	KeyHandler PhimNhan;
+	boolean Death=false;
 	public Player(PanelGame Panel,KeyHandler Phim) {
 		PG=Panel;
 		PhimNhan=Phim;
@@ -49,6 +51,8 @@ public class Player extends Entity{
 		}
 	};
 	public void Update() {
+		if(PhimNhan.Shift)setspeed(PG.getDai()/400);
+		else setspeed(PG.getDai()/200);
 		if(PhimNhan.Len) {y-=getspeed();Direction="Len";}
 		if(PhimNhan.Xuong) {y+=getspeed();Direction="Xuong";}
 		if(PhimNhan.Trai) {x-=getspeed();Direction="Trai";}
@@ -69,10 +73,14 @@ public class Player extends Entity{
 		case "Phai":if(PhimNhan.Stop)img=Phai0;else {if(TraiPhai==1)img=Phai1;if(TraiPhai==2)img=Phai2;}break;
 		}
 		g2.drawImage(img, x, y, PG.getSizeO(), PG.getSizeO(),null);
-		g2.setColor(Color.BLACK);
+		g2.setColor(Color.GREEN);
+		if(PhimNhan.Shift)g2.drawRect(x+HitBox.x, y+HitBox.y, HitBox.width, HitBox.height);
+		if(Death) {		
+		g2.setFont(new Font("Roboto Bold", Font.BOLD, 70));
+		g2.drawString("Game Over roi con ga", PG.getSizeO(), PG.getRong()/2);}
 	}
 	public void Die() {
 		System.out.println("Thua roi ngu vcl, dung may loz lam game deo bao h win duoc game");
-		PG.ThreadChayGame.stop();
+		Death=true;
 	}
 }

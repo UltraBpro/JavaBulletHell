@@ -13,17 +13,14 @@ public class Bullet extends Entity{
 	PanelGame PG;
 	Player Target;
 	public boolean TuHuy=false;
-	public Bullet(PanelGame Panel,Player TG,double TLSize,int posX,int posY,String Direct) {
+	public Bullet(PanelGame Panel,Player TG,double DoKho,int posX,int posY,String Direct) {
 		PG=Panel;
 		Target=TG;
-		TyLeSize=TLSize;
+		TyLeSize=DoKho/4;
 		x=posX;y=posY;
 		Direction=Direct;
-		setDefault();
+		setspeed((int)(PG.getDai()/200*(DoKho/2)));
 		getImg();
-	}
-	public void setDefault() {
-		setspeed(PG.getDai()/400);
 	}
 	public void getImg() {
 		try {
@@ -46,7 +43,7 @@ public class Bullet extends Entity{
 		int UpY=Target.y+Target.HitBox.y;
 		int BotY=Target.y+Target.HitBox.y+Target.HitBox.height;
 		if(CheckHit(LeftX,UpY)||CheckHit(LeftX,BotY)||CheckHit(RightX,UpY)||CheckHit(RightX,BotY))Target.Die();
-		if(x>PG.getDai()||x<PG.getSizeO()||y>PG.getRong()||y<PG.getSizeO())TuHuy=true;
+		if(x>PG.getDai()+PG.getSizeO()||x<0||y>PG.getRong()+PG.getSizeO()||y<0)TuHuy=true;
 	}
 	public void Draw(Graphics2D g2) {
 		BufferedImage img=null;
