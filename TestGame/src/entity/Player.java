@@ -77,7 +77,7 @@ public class Player extends Entity{
 		if(PhimNhan.Shift)g2.drawRect(x+HitBox.x, y+HitBox.y, HitBox.width, HitBox.height);
 		if(Death) {		
 		g2.setFont(new Font("Roboto Bold", Font.BOLD, 70));
-		g2.drawString("Game Over roi con ga", PG.getSizeO(), PG.getRong()/2);}
+		g2.drawString("Game Over roi con ga", PG.getSizeO(), PG.getRong()/2);PG.ThreadChayGame.stop();}
 	}
 	public void Die() {
 		System.out.println("Thua roi ngu vcl, dung may loz lam game deo bao h win duoc game");

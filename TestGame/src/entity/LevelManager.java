@@ -32,6 +32,7 @@ public class LevelManager {
 		case "Free":{
 			Random rand=new Random();
 			Timer timer = new Timer();
+			int QuangNghi=(int) (1000/DoKho);
 			timer.scheduleAtFixedRate(new TimerTask() {
 				  public void run() {
 						int index=rand.nextInt(PotentialDirect.length);
@@ -40,7 +41,16 @@ public class LevelManager {
 						String BulletDir=FindDirect(Direct)[index];
 						Dan.add(new Bullet(PG,PG.P1,DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
 				  }
-				}, 1000, 500);
+				 }, 1000, QuangNghi);
+			timer.scheduleAtFixedRate(new TimerTask() {
+				  public void run() {
+						int index=rand.nextInt(PotentialDirect.length);
+						String Direct=PotentialDirect[index];
+						index=rand.nextInt(FindDirect(Direct).length);
+						String BulletDir=FindDirect(Direct)[index];
+						Dan.add(new Bullet(PG,PG.P1,DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+				  }
+				 }, 1000, QuangNghi);
 			break;}
 		}
 	}
