@@ -25,9 +25,7 @@ public class GroundManager{
 			Tile3=ImageIO.read(getClass().getResourceAsStream("/Environment/Ground/tile3.png"));
 			GroundNum=new int[(PG.getDai()/PG.getSizeO()-1)*(PG.getRong()/PG.getSizeO()-1)];
 			Random rand=new Random();
-			for(int i=0;i<GroundNum.length;i++) {
-				GroundNum[i]=rand.nextInt(3);
-			}
+			for(int i=0;i<GroundNum.length;i++)GroundNum[i]=rand.nextInt(3);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

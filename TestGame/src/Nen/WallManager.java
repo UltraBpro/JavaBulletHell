@@ -26,9 +26,7 @@ public class WallManager{
 			Wall4=ImageIO.read(getClass().getResourceAsStream("/Environment/Wall/Wall4.png"));
 			WallNum=new int[PG.getDai()/PG.getSizeO()*2+PG.getRong()/PG.getSizeO()*2];
 			Random rand=new Random();
-			for(int i=0;i<WallNum.length;i++) {
-				WallNum[i]=rand.nextInt(4);
-			}
+			for(int i=0;i<WallNum.length;i++)WallNum[i]=rand.nextInt(4);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
