@@ -25,8 +25,8 @@ public class Player extends Entity{
 		setspeed(PG.getDai()/200);
 		Direction="Xuong";
 		HitBox=new Rectangle();
-		HitBox.height=9*PG.PhongTo;
-		HitBox.width=10*PG.PhongTo;
+		HitBox.height=8*PG.PhongTo;
+		HitBox.width=9*PG.PhongTo;
 		HitBox.x=3*PG.PhongTo;
 		HitBox.y=0*PG.PhongTo;
 	}

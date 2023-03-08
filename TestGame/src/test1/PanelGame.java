@@ -83,7 +83,7 @@ public class PanelGame extends JPanel implements Runnable{
 		P1.Update();
 		for(int i=0;i< BulletHell.size();i++) {BulletHell.get(i).Update();if(BulletHell.get(i).TuHuy){
 			BulletHell.remove(i);
-			System.out.println("Het game roi do thang loz demo nen ai cung qua duoc thoi cu");ThreadChayGame.stop();}
+			System.out.println("Het game roi do thang loz, demo nen ai cung qua duoc thoi cu");ThreadChayGame.stop();}
 		}
 	}
 	public void paintComponent(Graphics g) {
