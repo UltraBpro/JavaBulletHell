@@ -1,7 +1,9 @@
 package entity;
 import test1.PanelGame;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -22,18 +24,11 @@ public class Player extends Entity{
 		y=PG.getSizeO();
 		setspeed(PG.getDai()/200);
 		Direction="Xuong";
-	}
-	public void setX(int x) {
-		this.x=x;
-	}
-	public void setY(int y) {
-		this.y=y;
-	}
-	public int getX() {
-		return x;
-	}
-	public int getY() {
-		return y;
+		HitBox=new Rectangle();
+		HitBox.height=9*PG.PhongTo;
+		HitBox.width=10*PG.PhongTo;
+		HitBox.x=3*PG.PhongTo;
+		HitBox.y=0*PG.PhongTo;
 	}
 	public void getImg() {
 		try {
@@ -74,5 +69,10 @@ public class Player extends Entity{
 		case "Phai":if(PhimNhan.Stop)img=Phai0;else {if(TraiPhai==1)img=Phai1;if(TraiPhai==2)img=Phai2;}break;
 		}
 		g2.drawImage(img, x, y, PG.getSizeO(), PG.getSizeO(),null);
+		g2.setColor(Color.BLACK);
+	}
+	public void Die() {
+		System.out.println("Thua roi ngu vcl, dung may loz lam game deo bao h win duoc game");
+		PG.ThreadChayGame.stop();
 	}
 }
