@@ -15,6 +15,7 @@ import Nen.GroundManager;
 import Nen.WallManager;
 import entity.Bullet;
 import entity.Player;
+import entity.FPS;
 
 public class PanelGame extends JPanel implements Runnable{
 	final int SizeOGoc=16;
@@ -32,6 +33,7 @@ public class PanelGame extends JPanel implements Runnable{
 	WallManager tuong=new WallManager(this);
 	GroundManager dat=new GroundManager(this);
 	List<Bullet> BulletHell=new ArrayList<Bullet>();
+	FPS FPSdraw=new FPS(this);
 //	Vi tri nguoi choi 1
 	int P1X=100,P1Y=100,P1Speed=5;
 	public PanelGame() {
@@ -53,7 +55,7 @@ public class PanelGame extends JPanel implements Runnable{
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			  public void run() {
-			    System.out.println("FPS: "+solanve);
+			    FPSdraw.Update(solanve);
 			    solanve=0;
 			  }
 			}, 1000, 1000);
@@ -82,8 +84,9 @@ public class PanelGame extends JPanel implements Runnable{
 	public void Update() {
 		P1.Update();
 		for(int i=0;i< BulletHell.size();i++) {BulletHell.get(i).Update();if(BulletHell.get(i).TuHuy){
+			System.out.println("Het game roi do thang loz, demo nen ai cung qua duoc thoi cu");ThreadChayGame.stop();
 			BulletHell.remove(i);
-			System.out.println("Het game roi do thang loz, demo nen ai cung qua duoc thoi cu");ThreadChayGame.stop();}
+			}
 		}
 	}
 	public void paintComponent(Graphics g) {
@@ -93,6 +96,7 @@ public class PanelGame extends JPanel implements Runnable{
 		P1.Draw(g2);
 		for(Bullet i : BulletHell)i.Draw(g2);
 		tuong.Draw(g2);
+		FPSdraw.Draw(g2);
 		g2.dispose();
 	}
 	public int getRong() {

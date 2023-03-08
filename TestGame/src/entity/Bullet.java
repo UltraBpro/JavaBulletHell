@@ -23,7 +23,7 @@ public class Bullet extends Entity{
 		getImg();
 	}
 	public void setDefault() {
-		setspeed(PG.getDai()/500);
+		setspeed(PG.getDai()/400);
 	}
 	public void getImg() {
 		try {
