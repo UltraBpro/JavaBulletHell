@@ -4,11 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
 import Nen.GroundManager;
@@ -54,6 +61,15 @@ public class PanelGame extends JPanel implements Runnable{
 	int solanve=0;
 	public double TimeLast=System.currentTimeMillis();
 	public void run() {
+		try {
+			InputStream inputStream = getClass().getResourceAsStream("/Sound/StierMusic.wav");
+		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream);
+		    Clip clip = AudioSystem.getClip();
+		    clip.open(audioInputStream);
+		    clip.start();
+		  } catch (  IOException |LineUnavailableException|UnsupportedAudioFileException e) {
+		    e.printStackTrace();
+		  }
 		BulletHell.add(new LevelManager(this,"Free",P1));
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {

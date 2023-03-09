@@ -1,10 +1,18 @@
 package entity;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import test1.PanelGame;
 
@@ -38,6 +46,16 @@ public class LevelManager {
 						index=rand.nextInt(FindDirect(Direct).length);
 						String BulletDir=FindDirect(Direct)[index];
 						Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+						try {
+							InputStream inputStream = getClass().getResourceAsStream("/Sound/Shooting.wav");
+						    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream);
+						    Clip clip = AudioSystem.getClip();
+						    clip.open(audioInputStream);
+						    clip.start();
+						    if(PG.ThreadChayGame.isAlive()==false)clip.stop();
+						  } catch (  IOException |LineUnavailableException|UnsupportedAudioFileException e) {
+						    e.printStackTrace();
+						  }
 				  }
 				 }, 5000, QuangNghi);
 			timer.scheduleAtFixedRate(new TimerTask() {
@@ -48,7 +66,16 @@ public class LevelManager {
 						String BulletDir=FindDirect(Direct)[index];
 						Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
 				  }
-				 }, 7000, QuangNghi);
+				 }, 10000, QuangNghi);
+			timer.scheduleAtFixedRate(new TimerTask() {
+				  public void run() {
+						int index=rand.nextInt(PotentialDirect.length);
+						String Direct=PotentialDirect[index];
+						index=rand.nextInt(FindDirect(Direct).length);
+						String BulletDir=FindDirect(Direct)[index];
+						Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+				  }
+				 }, 20000, QuangNghi*2);
 			break;}
 		}
 	}

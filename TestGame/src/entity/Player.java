@@ -22,8 +22,8 @@ public class Player extends Entity{
 		getImg();
 	}
 	public void setDefault() {
-		x=PG.getSizeO();
-		y=PG.getSizeO();
+		x=PG.getSizeO()*3;
+		y=PG.getSizeO()*3;
 		setspeed((int)(PG.getDai()/100*(PG.DoKho/2)));
 		Direction="Xuong";
 		HitBox=new Rectangle();
@@ -79,7 +79,7 @@ public class Player extends Entity{
 		if(Death) {
 			g2.setColor(Color.YELLOW);
 		g2.setFont(new Font("Roboto Bold", Font.BOLD, 35));
-		g2.drawString("Game Over roi con ga, song duoc "+(System.currentTimeMillis()-PG.TimeLast)/1000+"s", PG.getSizeO()*3, PG.getRong()/2);
+		g2.drawString("Con gà, sống được: "+(System.currentTimeMillis()-PG.TimeLast)/1000+"s", PG.getSizeO()*3, PG.getRong()/2);
 		PG.ThreadChayGame.stop();}
 	}
 	public void Die() {

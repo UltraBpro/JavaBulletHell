@@ -3,8 +3,14 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import test1.PanelGame;
 
@@ -42,7 +48,18 @@ public class Bullet extends Entity{
 		int RightX=Target.x+Target.HitBox.x+Target.HitBox.width;
 		int UpY=Target.y+Target.HitBox.y;
 		int BotY=Target.y+Target.HitBox.y+Target.HitBox.height;
-		if(CheckHit(LeftX,UpY)||CheckHit(LeftX,BotY)||CheckHit(RightX,UpY)||CheckHit(RightX,BotY))Target.Die();
+		if(CheckHit(LeftX,UpY)||CheckHit(LeftX,BotY)||CheckHit(RightX,UpY)||CheckHit(RightX,BotY)) {
+			try {
+				InputStream inputStream = getClass().getResourceAsStream("/Sound/MCDeath.wav");
+			    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream);
+			    Clip clip = AudioSystem.getClip();
+			    clip.open(audioInputStream);
+			    clip.start();
+			    if(PG.ThreadChayGame.isAlive()==false)clip.stop();
+			  } catch (  IOException |LineUnavailableException|UnsupportedAudioFileException e) {
+			    e.printStackTrace();
+			  }
+			Target.Die();}
 		if(x>PG.getDai()+PG.getSizeO()||x<0||y>PG.getRong()+PG.getSizeO()||y<0)TuHuy=true;
 	}
 	public void Draw(Graphics2D g2) {
