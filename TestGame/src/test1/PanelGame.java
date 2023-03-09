@@ -28,10 +28,10 @@ public class PanelGame extends JPanel implements Runnable{
 	final int Dai=SLCot*SizeO;
 	boolean Init=false;
 	int FPS=60;
-	public double DoKho;String NhanVat;
+	public double DoKho;public String NhanVat;
 	public Thread ThreadChayGame;
 	KeyHandler PhimNhan=new KeyHandler();
-	public Player P1=new Player(this,PhimNhan);
+	public Player P1;
 	WallManager tuong=new WallManager(this);
 	GroundManager dat=new GroundManager(this);
 	List<LevelManager> BulletHell=new ArrayList<LevelManager>();
@@ -45,12 +45,14 @@ public class PanelGame extends JPanel implements Runnable{
 		this.addKeyListener(PhimNhan);
 		this.setFocusable(true);
 		this.DoKho=DoKho;this.NhanVat=NhanVat;
+		 P1=new Player(this,PhimNhan);
 	}
 	public void ChayThread() {
 		ThreadChayGame=new Thread(this);
 		ThreadChayGame.start();
 	}
 	int solanve=0;
+	public double TimeLast=System.currentTimeMillis();
 	public void run() {
 		BulletHell.add(new LevelManager(this,"Free",P1));
 		Timer timer = new Timer();

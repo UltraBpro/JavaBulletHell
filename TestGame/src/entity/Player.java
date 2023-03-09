@@ -33,19 +33,20 @@ public class Player extends Entity{
 		HitBox.y=0*PG.PhongTo;
 	}
 	public void getImg() {
+		String ImgFolder="/"+PG.NhanVat;
 		try {
-			Xuong0=ImageIO.read(getClass().getResourceAsStream("/Player/Xuong0.png"));
-			Xuong1=ImageIO.read(getClass().getResourceAsStream("/Player/Xuong1.png"));
-			Xuong2=ImageIO.read(getClass().getResourceAsStream("/Player/Xuong2.png"));
-			Len0=ImageIO.read(getClass().getResourceAsStream("/Player/Len0.png"));
-			Len1=ImageIO.read(getClass().getResourceAsStream("/Player/Len1.png"));
-			Len2=ImageIO.read(getClass().getResourceAsStream("/Player/Len2.png"));
-			Trai0=ImageIO.read(getClass().getResourceAsStream("/Player/Trai0.png"));
-			Trai1=ImageIO.read(getClass().getResourceAsStream("/Player/Trai1.png"));
-			Trai2=ImageIO.read(getClass().getResourceAsStream("/Player/Trai2.png"));
-			Phai0=ImageIO.read(getClass().getResourceAsStream("/Player/Phai0.png"));
-			Phai1=ImageIO.read(getClass().getResourceAsStream("/Player/Phai1.png"));
-			Phai2=ImageIO.read(getClass().getResourceAsStream("/Player/Phai2.png"));
+			Xuong0=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Xuong0.png"));
+			Xuong1=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Xuong1.png"));
+			Xuong2=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Xuong2.png"));
+			Len0=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Len0.png"));
+			Len1=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Len1.png"));
+			Len2=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Len2.png"));
+			Trai0=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Trai0.png"));
+			Trai1=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Trai1.png"));
+			Trai2=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Trai2.png"));
+			Phai0=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Phai0.png"));
+			Phai1=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Phai1.png"));
+			Phai2=ImageIO.read(getClass().getResourceAsStream(ImgFolder+"/Phai2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -75,9 +76,11 @@ public class Player extends Entity{
 		g2.drawImage(img, x, y, PG.getSizeO(), PG.getSizeO(),null);
 		g2.setColor(Color.GREEN);
 		if(PhimNhan.Shift)g2.drawRect(x+HitBox.x, y+HitBox.y, HitBox.width, HitBox.height);
-		if(Death) {		
-		g2.setFont(new Font("Roboto Bold", Font.BOLD, 70));
-		g2.drawString("Game Over roi con ga", PG.getSizeO(), PG.getRong()/2);PG.ThreadChayGame.stop();}
+		if(Death) {
+			g2.setColor(Color.YELLOW);
+		g2.setFont(new Font("Roboto Bold", Font.BOLD, 35));
+		g2.drawString("Game Over roi con ga, song duoc "+(System.currentTimeMillis()-PG.TimeLast)/1000+"s", PG.getSizeO()*3, PG.getRong()/2);
+		PG.ThreadChayGame.stop();}
 	}
 	public void Die() {
 		System.out.println("Thua roi ngu vcl, dung may loz lam game deo bao h win duoc game");

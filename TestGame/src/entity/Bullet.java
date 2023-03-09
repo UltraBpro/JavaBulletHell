@@ -51,8 +51,6 @@ public class Bullet extends Entity{
 		g2.drawImage(img, x, y, (int)(TyLeSize*PG.getSizeO()), (int)(TyLeSize*PG.getSizeO()),null);
 	}
 	private boolean CheckHit(int x,int y) {
-		boolean Hit=false;
-		if(x>this.x&&x<(this.x+(int)(TyLeSize*PG.getSizeO()))&&y>this.y&&y<(this.y+(int)(TyLeSize*PG.getSizeO())))Hit=true;	
-		return Hit;
+		return (x>this.x&&x<(this.x+(int)(TyLeSize*PG.getSizeO()))&&y>this.y&&y<(this.y+(int)(TyLeSize*PG.getSizeO())))	;
 	}
 }
