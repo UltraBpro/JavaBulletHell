@@ -69,13 +69,17 @@ public class LevelManager {
 				 }, 10000, QuangNghi);
 			timer.scheduleAtFixedRate(new TimerTask() {
 				  public void run() {
-						int index=rand.nextInt(PotentialDirect.length);
-						String Direct=PotentialDirect[index];
-						index=rand.nextInt(FindDirect(Direct).length);
-						String BulletDir=FindDirect(Direct)[index];
-						Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+					  timer.scheduleAtFixedRate(new TimerTask() {
+						  public void run() {
+								int index=rand.nextInt(PotentialDirect.length);
+								String Direct=PotentialDirect[index];
+								index=rand.nextInt(FindDirect(Direct).length);
+								String BulletDir=FindDirect(Direct)[index];
+								Dan.add(new Bullet(PG,PG.P1,PG.DoKho,findPos(Direct)[0],findPos(Direct)[1],BulletDir));
+						  }
+						 }, 1000, QuangNghi);
 				  }
-				 }, 20000, QuangNghi*2);
+				 }, 20000, QuangNghi*5);
 			break;}
 		}
 	}
