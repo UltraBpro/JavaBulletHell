@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Menu extends JPanel {
-	static String NV="Player";
+	static String NV="Mage";
 	static double DK;
 	static JFrame MH;
     public Menu(JFrame ManHinh) {
@@ -43,15 +43,15 @@ public class Menu extends JPanel {
         JPanel centerPanel = new JPanel(new GridLayout(1, 3, 10, 10)); // Sử dụng GridLayout để tạo lưới 1 hàng x 3 cột cho các phím
         ImageIcon icon1 = new ImageIcon("res/Mage/Xuong0.png");
         JButton button1 = new JButton(icon1);
-        button1.setText("Phap su");
-        ImageIcon icon2 = new ImageIcon("res/Luffy/Xuong0.png");
+        button1.setText("Mage");
+        ImageIcon icon2 = new ImageIcon("res/Knight/Xuong0.png");
         JButton button2 = new JButton(icon2);
-        button2.setText("Luffy?");
+        button2.setText("Knight");
         ImageIcon icon3 = new ImageIcon("res/FemaleWarrior/Xuong0.png");
         JButton button3 = new JButton(icon3);
         button3.setText("Bitch");
         centerPanel.add(button1);button1.addActionListener(new ChonNV("Mage"));
-        centerPanel.add(button2);button2.addActionListener(new ChonNV("Luffy"));
+        centerPanel.add(button2);button2.addActionListener(new ChonNV("Knight"));
         centerPanel.add(button3);button3.addActionListener(new ChonNV("FemaleWarrior"));
         add(centerPanel, BorderLayout.CENTER);
 
