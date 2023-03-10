@@ -42,13 +42,13 @@ public class Menu extends JPanel {
 
         // Tạo thành phần ở giữa (CENTER)
         JPanel centerPanel = new JPanel(new GridLayout(1, 3, 10, 10)); // Sử dụng GridLayout để tạo lưới 1 hàng x 3 cột cho các phím
-        ImageIcon icon1 = new ImageIcon("res/Mage/Xuong0.png");
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Mage/Xuong0.png"));
         JButton button1 = new JButton(icon1);
         button1.setText("Mage");
-        ImageIcon icon2 = new ImageIcon("res/Knight/Xuong0.png");
+        ImageIcon icon2 = new ImageIcon(getClass().getResource("/Knight/Xuong0.png"));
         JButton button2 = new JButton(icon2);
         button2.setText("Knight");
-        ImageIcon icon3 = new ImageIcon("res/FemaleWarrior/Xuong0.png");
+        ImageIcon icon3 = new ImageIcon(getClass().getResource("/FemaleWarrior/Xuong0.png"));
         JButton button3 = new JButton(icon3);
         button3.setText("Bitch");
         centerPanel.add(button1);button1.addActionListener(new ChonNV("Mage"));

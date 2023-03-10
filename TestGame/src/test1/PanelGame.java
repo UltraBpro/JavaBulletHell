@@ -62,7 +62,7 @@ public class PanelGame extends JPanel implements Runnable{
 	public double TimeLast=System.currentTimeMillis();
 	public void run() {
 		try {
-			InputStream inputStream = getClass().getResourceAsStream("/Sound/StierMusic.wav");
+			InputStream inputStream = getClass().getResourceAsStream("/Sound/StierMusic2.wav");
 		    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputStream);
 		    Clip clip = AudioSystem.getClip();
 		    clip.open(audioInputStream);
