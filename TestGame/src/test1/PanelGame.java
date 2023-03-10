@@ -29,8 +29,8 @@ public class PanelGame extends JPanel implements Runnable{
 	final int SizeOGoc=16;
 	public final int PhongTo=3;
 	final int SizeO=SizeOGoc*PhongTo;
-	final int SLCot=20;
-	final int SLHang=10;
+	final int SLCot=23;
+	final int SLHang=12;
 	final int Rong=SLHang*SizeO;
 	final int Dai=SLCot*SizeO;
 	boolean Init=false;

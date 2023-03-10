@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -38,6 +39,11 @@ public class Menu extends JPanel {
         });
         topPanel.add(label);
         topPanel.add(textField);
+        JLabel label2 = new JLabel("Music:");
+        JList<String> listnhac = new JList<>(new String[] {"S tier", "Khua ao xanh","Cam me mom"});
+        listnhac.setSelectedIndex(2);
+        topPanel.add(label2);
+        topPanel.add(listnhac);
         add(topPanel, BorderLayout.NORTH);
 
         // Tạo thành phần ở giữa (CENTER)
@@ -73,7 +79,7 @@ public class Menu extends JPanel {
 	static void runGame() {
 		JFrame MH=new JFrame();
 		MH.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		MH.setTitle("May dang lam con cac gi voi cuoc doi nay");
+		MH.setTitle("Khua ao xanh ne dan");
 		MH.setResizable(false);
 		PanelGame Game=new PanelGame(DK,NV);
 		MH.add(Game);
