@@ -83,7 +83,6 @@ public class Player extends Entity{
 		PG.ThreadChayGame.stop();}
 	}
 	public void Die() {
-		System.out.println("Thua roi ngu vcl, dung may loz lam game deo bao h win duoc game");
 		Death=true;
 	}
 }
