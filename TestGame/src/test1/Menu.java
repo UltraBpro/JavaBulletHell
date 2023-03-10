@@ -27,6 +27,7 @@ public class Menu extends JPanel {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Sử dụng FlowLayout để căn giữa các thành phần và tạo khoảng trống giữa chúng
         JLabel label = new JLabel("Độ khó:");
         JTextField textField = new JTextField(10);
+        textField.setText("2");
         textField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
